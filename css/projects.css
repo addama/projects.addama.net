@@ -5,8 +5,18 @@ body {
 	font-family: sans-serif;
 }
 
+header {
+	position: fixed;
+	top: 0;
+	right: 0;
+	text-align: right;
+	padding: 5px 1em;
+	background-color: rgba(250,0,0,0.75);
+	border-bottom-left-radius: 1em;
+}
+
 main {
-	width: 90%;
+	width: 90vw;
 	margin: 0 auto 8vh;
 	padding: 2vh;
 	text-align: justify;
@@ -49,7 +59,7 @@ p {
 
 h1 {
 	text-align: left;
-	margin: 3em 0 1em;
+	margin: 3em 0 1em -5vw;
 	background-color: #ddd;
 	color: #666;
 	padding: 5px 1em;
@@ -61,7 +71,7 @@ h2 {
 	margin: 0;
 }
 
-h1, h2, .ribbon {
+h1, h2, .ribbon, header {
 	font-family: 'Bebas Neue', Impact, sans-serif;
 }
 
