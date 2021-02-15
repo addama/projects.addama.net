@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>How to play Scopa | addama.net</title>
+		<link rel='stylesheet' type='text/css' href='../../css/whitepaper.css' />
+	</head>
+
+	<body>
+		<div id='main'>
+
+		<a id='top'></a>
+		<h1>How to play Scopa</h1>
+		<p>Scopa is an Italian card game for 2+ players using a 40 card Latin-suited deck. The goal is to capture the most cards, and more importantly, capture the <em>best</em> cards so that you are awarded the most points across several scoring metrics at the end of each round.</p>
+		<p>While there are many, many different variations in the game, rules, and decks based on the region it's played in, I will attempt to describe what I feel is the most general implementation of the game so that if you are interested in those differences, picking them up will be quick and easy. For example, it is common to play with four players on teams of two, or with different rules for how the capture math works (as in <em>Scopa di Quindici</em>).</p>
+		
+		<h2>The Deck</h2>
+		<p>Perhaps one of my favorite parts of this game is the deck. For the purposes of this page, I will refer to it as a "Scopa deck" - just know that this kind of deck is used to play other games as well, not just Scopa.</p>
+		<p>A Scopa deck consists of four suits: Coins, Cups, Swords, and Clubs. In each suit, there are eight pip cards (Ace, Two, Three, Four, Five, Six, Seven), and three face cards (Knave/Jack, Knight/Queen, and King). The face cards are easily distinguishable by their art: A Knave is just a man; a Knight has a horse; a King has a crown.</p>
+		<p>Don't worry if you don't have a dedicated Scopa deck - you'll notice that this is a subset of a normal French-suited deck. All you need to do is remove the Eights, Nines, and Tens and you can play Scopa just fine.</p>
+		
+		<h2>How to play</h2>
+		<p>At the beginning of the game, the dealer deals three face-down cards to each player, and four face-up cards to the table. The player on the dealer's right goes first. When the last card from the last player's hand has been played, each player gets a new hand of three cards.</p>
+		
+		<h3>Capturing</h3>
+		<p>During your turn, you have two goals:</p>
+		<ul>
+			<li>To capture as many cards as you can, and</li>
+			<li>To capture important, high-value cards</li>
+		</ul>
+		<p>Capturing cards is done by using a card from your hand to "buy" one or more cards from the table whose value add up to the card you are playing. There are two caveats to this:</p>
+		<ul>
+			<li>If there is already a matching card on the table, you must capture that card even if you could capture more in some other combination, and</li>
+			<li>If you cannot capture, you must place a card on the table</li>
+		</ul>
+		<p>For example, let's assume the table has a Six, Seven, Three, Four, and an Ace. I have a Seven in my hand, which means I have three capture options:</p>
+		<ul>
+			<li>The Seven alone,</li>
+			<li>The Six and Ace, adding up to seven, and</li>
+			<li>The Four and Three, also adding up to seven</li>
+		</ul>
+		<p>We know from the rules, however, that I can <strong>only</strong> capture the Seven even though the other captures would be better. Better luck next turn!</p>
+				
+		<h4>Scopa!</h4>
+		<p>If you manage to capture all of the cards from the table, this is called a <strong>Scopa</strong>, and is a cause for celebration and gloating. Why? Because you just got a free point regardless of other scoring metrics. Congratulations! Scopas cannot happen on the last card of the round, however. After a Scopa, the next player's only option is to place a card on the table.</p>
+		
+		<h4>Last Capture</h4>
+		<p>The last player to capture cards in the round (as in, the deck has run out and all hands have been played out), captures all the remaining cards on the table.</p>
+		
+		<h3>Scoring</h3>
+		<p>Games consist of rounds, during which the entire Scopa deck is played all the way through. After each round, points are calculated for each player, and a new round starts if none of the players have reached the point goal, which is usually either six for a short game, or eleven, sixteen, or 21 for a longer game.</p>
+		<p>Getting points comes from five metrics, which sounds like a lot to remember, but it's pretty easy as they are each distinct and easy to remember. If there is a tie for any of the four non-Scopa metrics, no points are awarded for that metric. In fact, the only guaranteed points per round are from Scopas and capturing the Seven of Coins.</p>
+		<ul>
+			<li><em>Scopa</em>: You get one point per <strong>Scopa</strong> you managed to get this round,</li>
+			<li><em>Cards</em>: You get one point if you have the <strong>most captured cards</strong>,</li>
+			<li><em>Seven</em>: You get one point if you captured the <strong>Seven of Coins</strong> (or Seven of Diamonds if playing with a regular deck),</li>
+			<li><em>Coins</em>: You get one point if you captured more <strong>Coins</strong> than your opponents, and </li>
+			<li><em>Primiera</em>: You get one point if you win Primiera, which is explained below.</li>
+		</ul>
+		<p>Points are only calculated between rounds. Even if you know for a fact that you will win at the end of the round, you must play through the rest of the round and tally up the points afterward. You never know when someone might come from behind and tie or surpass you!</p>
+		<p>In case of a draw, deal additional hands until a player breaks the tie by getting a point. This is likely to be the Seven of Coins or a Scopa if the round doesn't play out to its finish.</p>
+		
+		<h4>Primiera</h4>
+		<p>Primiera is the only complicated scoring metric, but it gets easier to estimate the more you play. Primiera is won by giving the important cards a new value, adding up the score for the best card in each suit you have captured, and having a higher Primiera value than your opponent.</p>
+		<p>The Prima scores are:</p>
+		<ul>
+			<li>Sevens: 21</li>
+			<li>Sixes: 18</li>
+			<li>Aces: 16</li>
+			<li>Fives: 15</li>
+			<li>Fours: 14</li>
+			<li>Threes: 13</li>
+			<li>Twos: 12</li>
+			<li>Face cards: 10</li>
+		</ul>
+		<p>As you can see, Sevens, Sixes, and Aces are the most important cards to capture, because they will give you the highest Primiera score. If playing with two players, determining Primiera is fairly easy, because you know  each card must belong to one player or another. To easily estimate Primiera, count the Sevens, and whoever has the most wins. If there is a tie, count the Sixes, and so on.</p>
+		<p>Feel free to use the Primiera calculator below!</p>
+		<div id='scopa-calc'>
+			<select id='stack1'>
+				<option value=21>7</option>
+				<option value=18>6</option>
+				<option value=16>Ace</option>
+				<option value=15>5</option>
+				<option value=14>4</option>
+				<option value=13>3</option>
+				<option value=12>2</option>
+				<option value=10>Face</option>
+			</select>
+			<select id='stack2'>
+				<option value=21>7</option>
+				<option value=18>6</option>
+				<option value=16>Ace</option>
+				<option value=15>5</option>
+				<option value=14>4</option>
+				<option value=13>3</option>
+				<option value=12>2</option>
+				<option value=10>Face</option>
+			</select>
+			<select id='stack3'>
+				<option value=21>7</option>
+				<option value=18>6</option>
+				<option value=16>Ace</option>
+				<option value=15>5</option>
+				<option value=14>4</option>
+				<option value=13>3</option>
+				<option value=12>2</option>
+				<option value=10>Face</option>
+			</select>
+			<select id='stack4'>
+				<option value=21>7</option>
+				<option value=18>6</option>
+				<option value=16>Ace</option>
+				<option value=15>5</option>
+				<option value=14>4</option>
+				<option value=13>3</option>
+				<option value=12>2</option>
+				<option value=10>Face</option>
+			</select>
+			<button id='calculate'>Calculate Primiera</button>
+			<span id='prima-result'>Click to calculate Primiera score</span>
+			<script type='text/javascript'>
+				var el = (id) => document.getElementById(id);
+				el('calculate').addEventListener('click', function() {
+					var stacks = [ el('stack1'), el('stack2'), el('stack3'), el('stack4') ];
+					var total = stacks.reduce((acc, curr) => acc + parseInt(curr[curr.selectedIndex].value), 0);
+					el('prima-result').innerHTML = 'Score: ' + total;
+				});
+			</script>
+			
+			<h2>Strategy</h2>
+			<p>During your turn, it's important to keep a general strategy in your mind. Because you can only do so much during a turn, you must adapt your strategy and plan for what your opponent might do based only on what's in front of you and what you know of your opponent's playstyle.</p>
+			<p>In general, these are the main points of strategy, in what I consider to be their order of importance:</p>
+			<ul>
+				<li>Capturing the Seven of Coins,</li>
+				<li>Capturing as many Sevens as possible,</li>
+				<li>Capturing as many Coins as possible,</li>
+				<li>Capturing as many Sixes and Aces as possible, especially if your opponent is gotten many Sevens,</li>
+				<li>Keeping a total of eleven points on the table so that your opponent can't Scopa,</li>
+				<li>Capturing as many cards as you can with each trick,</li>
+				<li>Taking obvious "combo" cards that your opponent places down so that they cannot use them in tricks later,</li>
+				<li>Placing high-value cards down after your opponent has gotten a Scopa so that they are less likely to get another</li>
+			</ul>
+			
+			<h2>Variations</h2>
+			<p>As Scopa and its derivatives are popular all over the world, there are numerous versions with new and different rules. I have outlined some of these below.</p>
+			<ul>
+				<li><strong>Scopa di quindici</strong>: Popular in Brazil as <em>Escoba</em>, instead of capturing cards that add up to your played card, you can only capture if the cards you want total up to 15</li>
+				<li><strong>Scopa d'assi</strong>: If you have an Ace, you may capture all cards on the table, though this does not count as a Scopa</li>
+				<li><strong>Re bello</strong>: Like the Seven of Coins, capturing the King of Coins also awards a point at the end of the round</li>
+				<li><strong>Cappotto</strong>: If a player is winning seven to zero, the game can be ended early as a victory for that player</li>
+			</ul>
+		</div>
+		
+		</div>
+	</body>
+</html>
