@@ -6,23 +6,26 @@
 	</head>
 
 	<body>
+		<header>
+			<a id='top'></a>
+			<a href='https://projects.addama.net'>projects.addama.net</a>
+		</header>
 		<div id='main'>
 
 		<a id='top'></a>
 		
 		<h1>Card Battle</h1>
-		<p><em>Card Battle</em> is a 2+ player card game that aims to capture the play concepts in <em>Magic: The Gathering</em> while only using a regular 52 card deck.</p>
+		<p><em>Card Battle</em> is a 2+ player card game that aims to capture the play concepts in <em>Magic: The Gathering</em> while only using a regular 52+2 card deck.</p>
 		<p>I was inspired, as with many things, by a late-night Youtube rabbit hole that put me in front of several homebrew card games using playing cards. If what I have made here isn't your jam, these might be:</p>
 		<ul>
 			<li><a href='https://www.youtube.com/watch?v=cYxRlZjuqrY'>Hezzop: The Poor Man's RPG Card Game</a> by Hezzop</li>
-			<li><a href='https://www.youtube.com/watch?v=sWZPvRXD9ws'>Hezzop Go</a> by Hezzop</li>
 			<li><a href='https://www.youtube.com/watch?v=GbEkAfCqfTM'>How To Play Clear The Dungeon - Solitaire - Card Games</a> by Riffle Shuffle & Roll</li>
 			<li><a href='https://www.youtube.com/watch?v=fNLSWuBJm0c'>Royal Execution: A single player card game with a standard playing deck.</a> by roofkat</li>
 		</ul>
 		
 		<h2>Setup</h2>
 		
-		<p>Each player will need their own deck of playing cards, Jokers included.</p>
+		<p>Each player will need their own deck of playing cards, Jokers included. Each player should ensure that their deck is properly shuffled before beginning play.</p>
 		
 		<h2>Basic Concepts</h2>
 		
@@ -64,7 +67,7 @@
 		<p>Each player's health is represented by the number of cards in their Draw Pile. Damage is dealt to players by <em>removing</em> cards from the Draw Pile. Similarly, <em>un-removing</em> cards is essentially healing a player.</p>
 		
 		<h3>Types of Card</h3>
-		<p>There are two major classifications of cards in <em>Card Battle</em>:</p>
+		<p>There are three major classifications of cards in <em>Card Battle</em>:</p>
 		<ul>
 			<li><strong>Face Cards (K, Q, J, A):</strong> These are your units, which can be summoned into your Roster</li>
 			<li><strong>Number Cards (1, 2, 3, 4, 5, 6, 7, 8, 9, 10):</strong> These are your spells and equipment</li>
@@ -112,12 +115,12 @@
 		
 		<h2>Combat</h2>
 		<p>Face Cards are units that you summon to attack your opponent and defend you from their units' attacks. By default, they are considered to have 1 health and 0 attack values. Spade units on the other hand, have a default attack value of 1.</p>
-		<p>You may initiate combat if you have the following in your Roster:</p>
+		<p>You may initiate combat if you have either of the following in your Roster:</p>
 		<ul>
 			<li>An un-tapped Spade unit, whether it has attachments or not</li>
 			<li>An un-tapped unit with a Spade attachment</li>
 		</ul>
-		<p>When you declare combat, <em>tap</em> the unit and its attachments and let your opponent know that you are starting combat. Your opponent then <em>taps</em> any number of un-tapped units in their Roster to defend, then chooses which of their defenders defends against which if your attackers. Multiple defenders may defend against one attacker.</p>
+		<p>When you declare combat, <em>tap</em> the unit and its attachments and let your opponent know that you are starting combat. Your opponent then <em>taps</em> any number of un-tapped units in their Roster to defend, then chooses which of their defenders defends against which if your attackers. Multiple defenders may defend against one attacker, with the defender deciding how to spread the attacker's damage between their units.</p>
 		<p><em>Tapped</em> units may not attack or defend while they remain tapped.</p>
 		<p>Combat damage is determined for both attacker and defender(s) simultaneously. To assess combat damage, compare any attached Spade card's number value with the opposite combatant's attached Heart card's number value. If one or both of these attachments are missing, refer to the defaults above.</p>
 		<p>Any unit that has a lower Heart value than their opposite combatant's Spade value is killed, and is <em>discarded</em> at the end of combat. If their Heart value is higher, they survive and are not <em>discarded</em>.</p>
@@ -138,7 +141,7 @@
 		
 		<h2>Course of Play</h2>
 		<p>The game is played in turns, alternating between you and your opponents. Determine who goes first by drawing a card from your deck and comparing the value; the player with the highest value goes first. If more than 2 opponents are present, the order of play goes to the right of the first player, or some other method that the group agrees to.</p>
-		<p>When play starts, each player draws 5 cards as a starting Hand.</p>
+		<p>When play starts, each player draws 5 cards as a starting Hand. Over the course of play, you may have any number of cards in your hand-there is no minimum or maximum.</p>
 		<p>When your turn begins, you must perform the following actions in order:</p>
 		<ol>
 			<li>Draw a card from your Draw Pile,</li>
