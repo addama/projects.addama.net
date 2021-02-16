@@ -16,7 +16,11 @@ header {
 	border-bottom-left-radius: 1em;
 	font-family: 'Bebas Neue', Impact, sans-serif;
 	font-size: 125%;
+}
+
+header a {
 	text-decoration: none;
+	color: #222;
 }
 
 #main, main {
