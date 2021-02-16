@@ -120,7 +120,7 @@
 			<li>An un-tapped Spade Unit, whether it has Attachments or not</li>
 			<li>An un-tapped Unit with a Spade Attachment</li>
 		</ul>
-		<p>When you declare combat, <em>tap</em> any number of Units (and their Attachments) and let your opponent know that you are starting combat. Your opponent then <em>taps</em> any number of un-tapped Units in their Roster to defend, then chooses which of their defenders defends against which if your attackers. Multiple defenders may defend against one attacker, with the defender deciding how to spread the attacker's damage between their Units.</p>
+		<p>When you declare combat, <em>tap</em> any number of Units (and their Attachments) and let your opponent know that you are starting combat. Your opponent then <em>taps</em> any number of un-tapped Units in their Roster to defend, then chooses which of their defenders defends against which if your attackers. Multiple defenders may defend against one attacker, with the defender deciding how to spread the attacker's damage between their Units. The defending play may choose not to assign any defenders.</p>
 		<p><em>Tapped</em> Units may not attack or defend while they remain tapped.</p>
 		<p>Combat damage is determined for both attacker and defender(s) simultaneously. To assess combat damage, compare any attached Spade card's number value with the opposite combatant's attached Heart card's number value. If one or both of these Attachments are missing, refer to the defaults above.</p>
 		<p>Any Unit that has a lower Heart value than their opposite combatant's Spade value is killed, and is <em>discarded</em> at the end of combat. If their Heart value is higher, they survive and are not <em>discarded</em>.</p>
@@ -188,15 +188,28 @@
 				</ul>
 			</li>
 		</ul>
-		<p>I declare combat by tapping my Jack. My Jack's 5 of Spades Attachment means it has an attack value of 5, but it has no Heart Attachment, meaning it has the default of 1 health. You tap your King as a defender. Your King has 3 health, and 1 unavoidable damage, but is not a Spade, nor does it have a Spade Attachment, so it has the default 0 attack value.</p>
+		<p>I declare combat by <em>tapping</em> my Jack. My Jack's 5 of Spades Attachment means it has an attack value of 5, but it has no Heart Attachment, meaning it has the default of 1 health. You <em>tap</em> your King as a defender. Your King has 3 health, and 1 unavoidable damage, but is not a Spade, nor does it have a Spade Attachment, so it has the default 0 attack value.</p>
 		<p>My Jack does 5 damage to your King, who absorbs 3 damage because of its health value, but unfortunately dies without doing any damage to me or my Jack. That leaves 2 un-defended damage that are applied to you. Your King has a Diamond Attachment, which applies 1 unavoidable damage to me.</p>
-		<p><strong>Results</strong>: My Jack lives, but your King dies. All Attachments on both Units are discarded. You take 2 damage, while I take 1 damage. Since your King died while carrying 3 Spade Attachments, you now un-discard 3 cards from your Discard Pile into your Hand.</p>
+		<p><strong>Results</strong>: My Jack lives, but your King dies. All Attachments on both Units are discarded. You take 2 damage, while I take 1 damage. Since your King died while carrying 3 Spade Attachments, you now <em>un-discard</em> 3 cards from your Discard Pile into your Hand.</p>
 		
 		<h1>Appendix A: Advanced Rules</h1>
 		<p>You may decide with your fellow players to implement any of these rules to expand play, make it easier or more complicated. It is not likely that these are balanced in any way, so proceed at your own risk.</p>
 		
-		<h3>One Discard Pile</h3>
-		<p>The Void Pile no longer exists. Any card that would be <em>removed</em> is instead <em>discarded</em> to the Discard Pile. This means that dealing damage to your opponents puts more cards into their Discard Pile, which they can pick and choose out of when <em>un-discarding</em>.</p>
+		<h3>Graveyard</h3>
+		<p>The Void Pile no longer exists. Any card that would be <em>removed</em> is instead <em>discarded</em> to the Discard Pile. This means that dealing damage to your opponents puts more cards into their Discard Pile, which they can pick and choose out of when <em>un-discarding</em>. Similarly, <em>un-removing</em> takes cards from the top of the Discard Pile and places them on the top of the Draw Pile.</p>
+		
+		<h3>Free For All</h3>
+		<p>Any card can be played as a Unit, Attachment, or Instant. When played as an Attachment or Instant, Aces have a value of 1, Jacks have a value of 11, Queens have a value of 12, and Kings have a value of 13</p>
+		<p>If playing with Picky Units, Units may only have Attachments less than or equal to their value.</p>
+		
+		<h3>Strong Houses</h3>
+		<p>If you have three out of the four Unit types (King, Queen, Jack, Ace) in your Roster with the same suit, they all receive benefits from all Attachments on those cards, cumulatively, but they all lose their Attachments whenever one of their same-suited Units attacks, even if only one is chosen as an attacker.</p>
+			
+		<h3>Hand Size</h3>
+		<ul>
+			<li><strong>Minimum Hand:</strong> At the beginning of your turn, you must draw up to 5 cards. If you have 5 or more cards already, draw 1 card as normal. This causes games to end quicker, but you will overall have more options per turn</li>
+			<li><strong>Maximum Hand:</strong> At the end of your turn, you must discard down to 5 cards. This forces you to be more strategic with your play choices and consider which cards are okay to discard</li>
+		</ul>
 		
 		<h3>Advanced Units Rules</h3>
 		<ul>
@@ -205,10 +218,10 @@
 			<li><strong>Picky Units:</strong> Aces may only have Attachments up to a value of 3; Jacks may have up to a value of 5; Queens may have up to a value of 7; Kings may have any value</li>
 			<li><strong>Rank-specific Units:</strong>
 				<ul>
-					<li><strong>Kings:</strong> Treat all Heart Attachments as having a value of 10</li>
-					<li><strong>Queens:</strong> Treat all Diamond Attachments as two cards</li>
-					<li><strong>Jacks:</strong> Treat all Spade Attachments as having a value of 10</li>
-					<li><strong>Aces:</strong> Treat all Club Attachments as two cards</li>
+					<li><strong>Kings:</strong> Treat Heart Attachments as having a value of 10</li>
+					<li><strong>Queens:</strong> Treat each Diamond Attachment as two cards</li>
+					<li><strong>Jacks:</strong> Treat Spade Attachments as having a value of 10</li>
+					<li><strong>Aces:</strong> Treat each Club Attachment as two cards</li>
 				</ul>
 			</li>
 			<li><strong>Suit-specific Units:</strong>
@@ -220,18 +233,9 @@
 				</ul>
 			</li>
 		</ul>
+
 		
-		<h3>Hand Size</h3>
-		<ul>
-			<li><strong>Minimum Hand:</strong> At the beginning of your turn, you must draw up to 5 cards. If you have 5 or more cards already, draw 1 card as normal. This causes games to end quicker, but you will overall have more options per turn</li>
-			<li><strong>Maximum Hand:</strong> At the end of your turn, you must discard down to 5 cards. This forces you to be more strategic with your play choices and consider which cards are okay to discard</li>
-		</ul>
-		
-		<h3>Mob Rule</h3>
-		<p>Any card can be played as a Unit, Attachment, or Instant. When played as an Attachment or Instant, Aces have a value of 1, Jacks have a value of 11, Queens have a value of 12, and Kings have a value of 13</p>
-		
-		<h3>Strong Houses</h3>
-		<p>If you have three out of the four Unit types (King, Queen, Jack, Ace) in your Roster with the same suit, they all receive benefits from all Attachments on those cards, cumulatively, but they all lose their Attachments whenever one of their same-suited units attacks, even if only one is chosen as an attacker.</p>
+
 		</div>
 	</body>
 </html>
