@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>addama.net | Article: The Building Blocks of Programming</title>
+		<link rel='stylesheet' type='text/css' href='../../css/whitepaper.css' />
+	</head>
+	<body>
+		<header>
+			<a id='top'></a>
+			<a href='https://projects.addama.net'>projects.addama.net</a>
+		</header>
+		<div id='main'>
+		<a id='top'></a>
+
+		<h1>The Building Blocks of Programming</h1>
+
+		<div class='banner'>
+			This article was written for use as internal documentation at Xtract Solutions, and may contain language or reference intended for that audience and time period
+		</div>
+
+		<p>All of programming is composed of the following building blocks:</p>
+		<ul>
+			<li>Loop</li>
+			<li>If</li>
+			<li>Variable</li>
+			<li>Function</li>
+			<li>Comment</li>
+		</ul>
+		
+		<p>Furthermore, variables can be categorized into basic data types. These are:</p>
+
+		<ul>
+			<li>Boolean</li>
+			<li>Number</li>
+			<li>Character</li>
+			<li>Object</li>
+			<li>Not a number</li>
+		</ul>
+		
+		<p>Believe it or not, everything you've ever seen or used has been constructed from those basic things, even the most complex or ingenious solutions can be broken down into these atomic parts. </p>
+
+		<p>These basic parts are supported by a similarly elemental system of concepts at a more meta level. These are:</p>
+		
+		<ul>
+			<li>Headers</li>
+			<li>Control flow</li>
+			<li>Inheritance/Scope</li>
+		</ul>
+		
+		<h2><a href='whats_all_the_rest_then'></a>What's All the Rest Then?</h2>
+
+		<p>If everything can theoretically be written with the above handful of concepts, why is there so much more?</p>
+
+		<p>Because programmers are <del>lazy</del> efficient. If you find that you are performing the same actions over and over, you'd put those actions in a function and call that instead, right? That saves some lines here and there and makes the code look cleaner. Every <code>map</code> or <code>push</code> or <code>switch</code> or <code>class</code> is someone's attempt to wrap up a LOT of code into a more usable, shorter, more efficient package so that they and future developers don't have to re-type all of those basic concepts over and over again. This is sometimes called "syntactic sugar", because it's much sweeter to type a quick line than the ten lines that line represents.</p>
+
+		<p>So, while it is extremely important that you know your basic building blocks, the alphabet, it's just as important to know what newer, more efficient encapsulations of those things are, and when to use them. The goal is efficiency, but across multiple planes. Efficient use of your time, efficient use of characters and file length, efficient use of processor time, efficient control flow, etc. In some cases, that nice function you're used to is overkill for the task, and is therefore less efficient for the processor than a simpler alternative. Maximize all of these planes, and you'll have beautiful, quick, compact, readable code.</p>
+
+		<h2><a href='parts_atomic'></a>The Parts Atomic</h2>
+
+		<p>Let's look at each of the basic building blocks, examine how they're used, and what they can be used for.</p>
+
+		<h3><a href='loop'></a>The Loop</h3>
+
+		<p>Loops come in 2 natural flavors: <code>while... do...</code> and <code>do... until</code>. Not every language expresses both types explicitly, but they are there all the same. Loops are comprised of a boolean loop-condition, and a block of code to be run on each iteration. It is assumed that the code block, or some external force, will do something on each iteration that might change the outcome of the loop-condition.</p>
+
+		<p>A <code>while</code> loop checks its loop condition first, then if the boolean returns true, it runs the code block. This is what <code>for</code> loops are. An <code>until</code> loop runs the code block, then checks the boolean to see if it should stop.</p>
+
+		<p>This is what that looks like in pseudocode:</p>
+
+		<pre class='pre-js'>
+while (items > 0) {
+	// do something with items
+	// if items === 0, this block won't run
+	// but also if items never changes, it's an infinite loop!
+	items--
+}
+
+do {
+	items--
+	// do something with items
+	// this block will run even if items === 0 from the beginning
+} until (items === 0)
+		</pre>
+
+		<p>Loops run until their boolean condition returns false, which could be never, causing the infamous infinite loop. We generally avoid infinite loops because it disrupts the flow of control (more on that later) and can cause the application to seize and/or inefficiently use resources. We don't want that!</p>
+
+		<h3><a href='if'></a>The If</h3>
+
+		<p>Arguably the most primal element alongside the variable, <code>if</code> checks a boolean condition, then runs a code block if it's true. You'll notice that that's essentially the same as a <code>while</code> loop, but it only gets run once. That's because it is! At a fundamental level, a <code>while</code> and a basic <code>if</code> are the same. The <code>while</code> just <em>expects</em> that the boolean could be different the next time and runs until that expectation comes true. Or... forever, whichever comes first.</p>
+
+		<p>As you know, the <code>if</code> can be accompanied by an <code>else</code>, which is run if the boolean condition returns false. You can also add <code>else if</code> to say "okay, if THAT was false, what about THIS one?". The <code>else</code> always comes at the end, because it acts as a catch-all for when everything else is false.</p>
+
+		<pre class='pre-js'>
+if (items > 0) {
+	print "Got items!"
+} else if (queuedItems > 0) {
+	print "No items, but items are coming!"
+} else {
+	print "No items!"
+}
+		</pre>
+
+		<p>A <code>switch</code> is a beautiful implementation of the <code>if</code>. If I know that I need to check the same variable for different values, and I want to handle some values the same as others, it can be easier to write that as a <code>switch</code>. However, underneath, it's just an easier, more readable way to write a complex <code>if</code>.</p>
+
+		<pre class='pre-js'>
+// These are functionally identical
+switch (object) {
+	// Cases can stack up, all causing the same outcome
+	// To prevent this pile-up, you need to <code>break</code> out!
+	case 'tomato':
+	case 'strawberry':
+		print 'Food'
+		break
+	case 'cat':
+	case 'dog':
+	case 'bear':
+	case 'koala bear':
+		print 'Animal'
+		break
+	default:
+		print 'Object'
+}
+
+if (object === 'tomato' || 'strawberry') {
+	print 'Food'
+} else if (
+	object === 'cat' || 
+	object === 'dog' || 
+	object === 'bear' || 
+	object === 'koala bear'
+	) {
+	print 'Animal'
+} else {
+	print 'Object'
+}
+		</pre>
+
+		<p>You can also be tricky with a <code>switch</code> and reverse the position of the boolean check and the values. That gives you more flexibility in what checks you make in the cases, essentially trading one big boolean condition, for any number of smaller individual boolean checks. It doesn't make sense (to me at least) when described that way, but look at this:</p>
+
+		<pre class='pre-js'>
+switch (true) {
+	// Now I can make any check I want as long as it resolves to true
+	case object === 'tomato':
+	case object.endsWith('berry'):
+		print 'Food'
+		break
+	case object === 'cat':
+	case object === 'dog':
+	case object.endsWith('bear'):
+		print 'Animal'
+		break
+	default:
+		print 'Object'
+}
+		</pre>
+
+		<h3><a href='variable'></a>The Variable</h3>
+
+		<p>The single most primal element of programming is the variable. All the way down on the computer level, a variable is a position in memory that has been assigned to hold an amount of bits; when translated upward into more and more complex programming languages, the memory position is now abstracted into a variable name, and the bits are now abstracted into the data types those bits represent. Without the data it contains, none of the rest of the elements matter or even work.</p>
+
+		<p>Variables are just named buckets into which you can put data. The language may add additional functionality and expectations around a variable, but those are just a series of functions and ifs that the language is doing for you so you don't have to create that functionality yourself. Again, one of those efficiency improvements someone made so you don't have to worry about it anymore.</p>
+
+		<p>Depending on the language, variables may either be <em>statically typed</em>, that is, you declare what kind of data it holds beforehand, or <em>dynamically typed</em>, which means the language just figures out what to do with the data you give it. Javascript and PHP are dynamically typed, while Java and C# are statically typed.</p>
+
+		<p>Not having to specify types on all your variables can make programming easier and a little more fluid; however, this comes at the cost of being less efficient, and removing the assurance that your variables will only hold the kind of data you expect them to, leading to the necessity for making your own error checking.</p>
+
+		<pre>
+// Statically typed variables
+int numberOfItems = 100
+string description = 'Big shaggy dog'
+
+// Dynamically typed variables
+var numberOfItems = 100
+var description = 'Big shaggy dog'
+		</pre>
+
+		<p>There are a lot of data types that a variable can hold. This separation and classification is done to make the backend storage and operation more efficient. After all, if your variable will only ever be 1 digit, why allocate space in memory for 65,000 digits? Each language includes and parses a different subset of types, so instead of talking about all of the different possible types, we're only going to look at the primitive ancestors that all others are born from. </p>
+
+		<ul>
+			<li><strong>Number</strong>
+				<ul>
+					<li>Number types are generally further separated into how many digits they can hold, whether they can be negative or not, and whether they are whole or can have decimal places</li>
+					<li>Number types include: short, long, int, byte, float, double, decimal</li>
+					<li>Can be signed (can be negative or positive) or unsigned (can only be positive)</li>
+				</ul>
+			</li>
+			<li><strong>Character</strong>
+				<ul>
+					<li>More commonly called "strings", character types can hold any character, to include digits. They are further separated by how many characters they can hold</li>
+					<li>Character types include (with some overlap): char, string, text, varchar</li>
+				</ul>
+			</li>
+			<li><strong>Boolean</strong>
+				<ul>
+					<li>Booleans can only be true or false; that is, not the string value of 'true' or 'false', but the primal concept of truth or falsehood, and can be seen more of a switch that flips on or off</li>
+					<li>Some languages equate 0 or <code>null</code> or <code>undefined</code> with <code>false</code> when making a boolean check</li>
+				</ul>
+			</li>
+			<li><strong>Object</strong>
+				<ul>
+					<li>Objects are complex but self-connected groupings of other values, and how complex or strict they can be depends entirely on the language</li>
+					<li>Object types can generally be broken down into two kinds: arrays, which are a two dimensional stack of similar values, and objects, which are an array of arrays, each sub-array only having 2 items: the key and the value (which may itself be an key:value array or array of arrays)</li>
+					<li>It is also common for object types to be further specialized by specifying what data type they can hold, or giving them special functionality</li>
+					<li>Object types include: object, array, class, interface, struct, enum, set</li>
+				</ul>
+			</li>
+			<li><strong>Not a Number</strong>
+				<ul>
+					<li>Not a number, or <code>NaN</code>, is the catch-all for variables that should have contained a number but something went wrong</li>
+					<li><code>NaN</code> is universally bad - it means you screwed up the math somewhere and the language couldn't figure out how to solve it on its own</li>
+					<li><code>NaN</code> is neither a number, a character, an object, or a boolean. In some languages, <code>NaN</code> can be equivalent to <code>false</code>, but in most it's its own data type that is not equivalent to anything else</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<p>Honorable mentions for variable types go to <code>null</code> and <code>undefined</code>, which are sometimes the same, but more often than not completely different. <code>null</code> denotes an empty value. <code>undefined</code> denotes a value that doesn't exist. Do those sound like the same thing to you? <em>They're not!</em> One <em>is</em> <code>null</code>, empty, without value, the other doesn't even exist in the first place, and therefore can't even <em>have</em> a value of <code>null</code>.</p>
+
+		<pre class='pre-js'>
+let values = [
+	null
+]
+
+console.log(values[0]) // => null; the variable exists, but has no meaningful value
+console.log(values[1]) // => undefined, probably throwing an error; the variable doesn't exist at all
+		</pre>
+
+		<h3><a href='function'></a>The Function</h3>
+
+		<p>The most advanced of the primitives, the function is technically an array (see above) that contains instructions as its values, which the language runs in sequence. In the same way that a <code>while</code> loop is an <code>if</code> that the language knows it needs to run more than once, a function is a set of instructions stored in an array (stored in a variable) that the language knows it needs to execute, one line at a time. I know that's a bit more confusing than the other correlations, but just know that at its core, functions are composed of the same bits as everything else. They've just <em>become</em> elemental and atomic due to their age and how efficiently the language handles them. Again, some programmer before you put in the work to allow you to make nameable, repeatable code so that you don't have to create that functionality for yourself every time.</p>
+
+		<p>Functions are named blocks of code. You invoke the name of the function to transfer the flow of control (see Control Flow below) to that section of the code. Each instruction in the block are executed in the order they are provided. Once the block runs its course, the control goes back to the place it was and continues linearly as normal. You know how you can <code>return</code> something at the end of a function? That <code>return</code> is <em>itself</em> a function! It's just been abstracted from you and made a standard part of how functions operate.</p>
+
+		<p>While functions tend to be fairly standard across the board, some languages give them greater or lesser flexibility in what they can do inside of themselves, what they are aware of or not aware of (see Inheritance/Scope below) within the flow of control, and what can go into and come out of them.</p>
+
+		<p>As an example, <em>functional</em> languages famously requires that functions not create side-effects and cannot modify the original data that they are given as input. The function must return a new copy of that data with any changes it was called to make, and that's it. This ensures data integrity and verifiability across the entire control flow, while ensuring that functionality is efficient and only does what it needs to do. If that sounds familiar, that's because this is what React/Redux's state control is based on.</p>
+
+		<h3><a href='comment'></a>The Comment</h3>
+
+		<p>Code documentation, while not approached with the same ingenuity as the rest of the facets of programming, does have its own lineage through history. Imagine wading through a sea of hexadecimal numbers, having to refer to a binder of typed out notes to understand what's going on. At some point, you might have the same thought that our ancestors did: <em>'there must be a way to document the code IN the code itself'</em>. And so: comments were born.</p>
+
+		<p>Comments are instructions that the compiler knows to ignore. At some points in history, in some languages, comments were made using nonsensical or "bad" instructions that the programmer knew would skip past or not do anything with. This was carried forward into all languages as a specific instruction that the compiler would <em>actively</em> ignore, instead of trying to trick it into doing nothing with it.</p>
+
+		<p>Comments generally come in 2 flavors: <strong>line</strong>, and <strong>block</strong>. Line comments are just that: the rest of the line is ignored, and therefore safe for non-code text. A block comment is, essentially, an <code>until</code> loop that says "starting from this line (<code>/*</code>): ignore each line, then check if the comment has closed (<code>*/</code>); if it has, stop ignoring the line".</p>
+
+		<pre class='pre-js'>
+// Of course, it's a little more complicated than this, because you can put a block comment all on the same line,
+// but for the sake of demonstration, this assumes that you give the block comment its own lines
+if (line like '/*') {
+	do {
+		ignore(line)
+	} until (line like '*/')
+}
+		</pre>
+
+		<h1><a href='architectural_concepts'></a>Architectural Concepts</h1>
+
+		<p>We've learned about the grammar of language: the verbs, the nouns, etc. But knowing just what a function <em>is</em> isn't enough, is it? We now need to learn the <em>syntax</em> of language: how the parts interact, and how the compiler interacts with the parts.</p>
+
+		<p>Every language varies in complexity in its syntax and the depth and strictness of its architectural scaffolding. It would not be productive for me to go into every facet possible in the range of features languages over time have experimented with or standardized. Instead, I'll be focusing on more or less universal concepts that have underlaid <em>all</em> languages since the earliest languages, and see what other branches can be discovered from there.</p>
+
+		<h2><a href='headers'></a>Headers</h2>
+
+		<p>Headers in a traditional sense are not strictly relevant to Javascript because it takes care of them for you in the background with a standardized set. It does this to increase security and stability in a browser environment, where the user's safety is the primary concern. It would be dangerous for you to be able to change how Javascript works on a whim, potentially exposing dangerous data or functions. While knowledge of headers won't impact your Javascript work, they are present everywhere else, so... you should at least be familiar.</p>
+
+		<p>Headers are a description of what's to come. Headers precede every request you make on the internet, and are (sometimes invisibly) attached to every file you try to compile or run. Each executable holds a header that describes what it is, who made it, what it does, and any specific changes the program inside requires. In most cases, they are given as a heads-up to whoever is receiving whatever you're sending, priming them for how to deal with the payload they're about to receive, and potentially what you're expecting to get out of the arrangement.</p>
+
+		<p>In programming languages, famously in C languages, headers are used to define all of your variables and functions and needed files ahead of time, as well as the interfaces to the hardware you want to use. The compiler uses these definitions to know what files/code to include both from local files and from the language itself, as well as to check your work to make sure you haven't screwed something up. In a way, Javascript equivalents might be:</p>
+
+		<ul>
+			<li>npm's <code>package.json</code>, which tells npm which packages you intend to use, and in what contexts</li>
+			<li>All of your <code>import</code>s at the top of your file, which tells webpack which packages are relevant to that specific file, and what parts of that package you need</li>
+			<li>On a smaller scale, using <code>propTypes</code> to declare what props a component expects to receive and what data types they are</li>
+		</ul>
+		
+		<p>In networking, requests between servers come bundled with (or are preceded by) an HTTP header that could describe any number of things about the connection, the payload, the expectation of what data format the response will be in, who the sending server is, who is allowed to respond, etc. If you're familiar with a 404 error or a 500 error, those are HTTP response header status codes. Your browser has 2 core functions: to send, receive, and interpret headers (using an HTTP library), and to render the contents of the responses it receives based on those headers (using a Javascript engine alongside an HTML engine). Everything else is just <em>sweet</em>.</p>
+
+		<h2><a href='control_flow'></a>Control Flow</h2>
+
+		<p>Control Flow is a concept that can catch out inexperienced programmers, and can even be a source of misery for veterans that overlook it. Control Flow, as its name implies is the <strong>flow</strong> of <strong>control</strong> through the code. Control, in this case, meaning "which line am I paying attention to right now?", or maybe more accurately: "which line has control over what the program should do right now?"</p>
+
+		<p>The flow of control is linear, like a stream or a waterfall: it starts at the top with line 1, and flows down to each subsequent line until the last line. Like water, the control flow is always moving, and always moving <em>down</em>, as if affected by gravity. You can think of moving forward along this line as <em>downstream</em>, with the current, and moving back up toward line 1 as <em>upstream</em>, against the current. This downstream flow is only interrupted by 4 things:</p>
+
+		<ul>
+			<li><strong>Functions</strong>
+				<ul>
+					<li>Calling a function moves the control flow to the first line of the function, wherever that is, and resumes falling downward from there</li>
+					<li>Once the function ends, the control flow is moved back to one line after where it was when the function was called</li>
+				</ul>
+			</li>
+			<li><strong>Loops</strong>
+				<ul>
+					<li>Starting a loop causes the control flow to return to the first line of the loop if the boolean condition fails</li>
+					<li>Essentially, this is the same as how a function moves the control flow, but instead of coming back to the line <em>after</em> the loop declaration, it moves back to the loop declaration line itself, which makes that line run again. This is what causes it to loop</li>
+				</ul>
+			</li>
+			<li><strong>If statements</strong>
+				<ul>
+					<li>Starting an if statement causes control flow to skip lines if the if statement conditional is not met</li>
+					<li>Again, this is the same as the above, except instead of traveling <em>backward</em>, an if moves the control flow <em>forward</em> to skip unneeded lines</li>
+				</ul>
+			</li>
+			<li><strong>Specific control flow statements</strong>
+				<ul>
+					<li>Instructions such as <code>return</code>, <code>break</code>, and <code>continue</code> are all technically functions that have been abstracted and made easier to use, but they are specifically made to alter the flow of control and do nothing else, so I consider them separate</li>
+					<li><code>return</code> says "end what you're doing now, and return to where you were before"</li>
+					<li><code>break</code> says "get out of this loop, but not out of the function that runs the loop (if there is one)"</li>
+					<li><code>continue</code> says "go to the next iteration of this loop instead of finishing this iteration"</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<p>The flow of control can get confusing when you start getting into higher order languages. For instance, if you include React in your program, and React includes Lodash, and Lodash requires leftpad, you now have less of a clear picture of what line is being run at any given time. Control is being passed all over the place, looping, skipping, jumping, and returning.</p>
+
+		<p>To combat this confusion, errors generally come with what's called a <em>stacktrace</em>. A stacktrace shows the history of where the flow of control has been from the point the error occurred, all the way back to line 1 (more or less). Using a stacktrace, you can <em>trace</em> the flow of control all the way up the <em>stack</em> of code and see where it's been.</p>
+
+		<h2><a href='inheritance_scope'></a>Inheritance/Scope</h2>
+
+		<p>As the flow of control moves down the lines of your code, variables and functions are defined, and they are referred to by name later. When you enter a function, you define input variables that are only used within that function, but in general, any variables or functions defined upstream in the flow of control are available to use as well. This is inheritance. Future lines inherit the variables and functions that were defined earlier. But on top of that there's the added concept of <em>scope</em>, which is little pockets of inheritance that live inside the "global" inheritance created by the flow of control moving downstream. </p>
+
+		<pre class='pre-js'>
+// Global scope only
+let inherited = true
+
+function getInherited() {
+	// Global scope AND getInherited() scope
+	let limitedScope = true
+	return inherited
+}
+
+// Back to Global scope only
+console.log(getInherited()) // => true
+console.log(limitedScope) // => undefined, I'm not in that scope anymore
+		</pre>
+
+		<p>Being "in scope" means that you're at the same level of inheritance AND downstream in the control flow of something else. In the example above, a new scope is created inside of the <code>getInherited</code> function. Anything that happens in there only happens inside that scope unless it is returned. The <code>console.log</code>s below are downstream, yes, but not at the same level of inheritance, because they live outside of the function's scope. </p>
+
+		<p>If it helps, here is a more physical example: You are <em>in scope</em> everything in your house. For example, the pool in your backyard is available to everyone in the house. A person driving by outside the neighborhood doesn't get to see or even know about your backyard pool because it's inside your fenced backyard area, and he's out on the road. Similarly, that person is in scope with everything in his car, which you are not privy to. He could have a cake in his passenger seat, and you'd never know. Someone in a helicopter, however, can see both your backyard AND the car driving by, and as such, they can see and be aware of your backyard pool as well as the cake in the car (through the sunroof!).</p>
+
+		<p>Inheritance also plays a large part in object-oriented programming (OOP), which sets up an entire structure based solely on inheritance and scope. When you create a React component like <code>class MyComponent extends React.Component</code>, that component will inherit everything that <code>React.Component</code> already has defined or included, which inherits whatever its ancestor already had. In this way, we can create chains of inheritance and scope that get more and more specific as we go down. The common example used in any tutorial is "cats and dogs are pets, and both have have 4 legs, a tail, and make noises, but only dogs woof, and only cats meow."</p>
+
+		<h1><a href='conclusion'></a>Conclusion</h1>
+
+		<h2><a href='why_is_it_important'></a>Why is it important to know these concepts?</h2>
+
+		<p>So, why learn these building blocks when a whole lot of work has already been done to make things easier and simpler to use?</p>
+
+		<p>Well, for one, because you still have and use these basic tools in between your higher order code. For every <code>array.map</code>, I bet you have 1-5 <code>for</code> loops. Sometimes, the simpler answer is the better answer; sometimes, the opposite is true. In fact, in a lot of cases, the more "complex" and "newer" solutions are more efficient because they've been made to take advantage of things the processor/compiler are good at. Really, you should take advantage of the full breadth of options available to you in the language you work with. </p>
+
+		<p>The main reasons being familiar with the atomic building blocks of language, in my estimation are: freedom and scale of response</p>
+
+		<h3><a href='more_options'></a>More options, more freedom, more creativity</h3>
+
+		<p>As logical as programming is, it is primarily a creative endeavor, more similar to painting than it is to wiring a circuit board. You have an entire language, or multiple languages, at your disposal, as well as a wide palette of design patterns and algorithms, and your choices in how to use them matter.</p>
+
+		<h3><a href='ability_to_scale'></a>Ability to scale your solution to the problem</h3>
+
+		<p>Have you ever heard the phrase "when all you have is a hammer, everything becomes a nail"? Here's another one: "swatting flies with a sledgehammer." Both of them describe a situation in which you are underequipped to deal with the scale of the problem you are facing. By learning the basic building blocks of language alongside the newer, fancier technology, you increase your toolkit to handle more and more problems. More than that though, is that you can be creative and efficient in <em>how</em> you solve those problems. Some problems require simple, brutal, or precise solutions. Others require elegance, black magic, or one-of-a-kind solutions. By knowing the full breadth of the language you work in, you are capable of seeing those distinctions and making the appropriate solution for each case.</p>
+		</div>
+	</body>
+</html>
