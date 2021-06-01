@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>addama.net | Article: Scrum Primer</title>
+		<link rel='stylesheet' type='text/css' href='../../css/whitepaper.css' />
+	</head>
+	<body>
+		<header>
+			<a id='top'></a>
+			<a href='https://projects.addama.net'>projects.addama.net</a>
+		</header>
+		<div id='main'>
+		<a id='top'></a>
+
+		<h1>Scrum Primer</h1>
+		<div class='banner'>
+			This article was written for use as internal documentation at Xtract Solutions, using the 2017 version of the Scrum Guide, and may contain language or reference intended for that audience and time period
+		</div>
+		<p>A lot has been said and written about Scrum. You can, and *should*, read about it in more depth elsewhere, particularly the <a href='https://www.scrum.org/resources/scrum-guide'>The Scrum Guide 2017</a>. There are a lot of specific details that I'll not mention here because that's not the point of this document. This primer is here as an introduction to Scrum in as simple and relatable way I can muster.</p>
+		<p>That being said, while I am essentially just rephrasing what's in the Scrum Guide, this is all through my own interpretation as Scrum Master, and your experience with Scrum may differ. That's fine; let's meld them together.</p>
+
+		<h2>Table of Contents</h2>
+		<ul>
+			<li><a href='#what-is-scrum'>What is Scrum?</a></li>
+			<li><a href='#roles'>Roles</a>
+				<ul>
+					<li><a href='#development-team'>Development Team</a></li>
+					<li><a href='#product-owner'>Product Owner</a></li>
+					<li><a href='#scrum-master'>Scrum Master</a></li>
+				</ul>
+			</li>
+			<li><a href='#the-sprint'>The Sprint</a>
+				<ul>
+					<li><a href='#definition-of-done'>Definition of Done</a></li>
+				</ul>
+			</li>
+			<li><a href='#meetings'>Meetings</a>
+				<ul>
+					<li><a href='#sprint-planning'>Sprint Planning</a></li>
+					<li><a href='#daily-scrum'>Daily Scrum</a></li>
+					<li><a href='#sprint-review'>Sprint Review</a></li>
+					<li><a href='#sprint-retrospective'>Sprint Retrospective</a></li>
+				</ul>
+			</li>
+			<li><a href='#reflections-from-your-warmaster-scrum-master'>Reflections from your <del>Warmaster</del> <ins>Scrum Master</ins></a></li>
+			<li><a href='#resources'>Resources</a></li>
+		</ul>
+		
+		<h2><a id='what-is-scrum'></a>What is Scrum?</h2>
+
+		<img src='./ScrumFramework.png' title='Flowchart of Scrum Meetings inside a Sprint, scrum.org' alt='Flowchart of Scrum Meetings inside a Sprint, scrum.org' />
+
+		<p>Scrum is an Agile framework; that is, it takes the vague and lofty statements of the <a href='http://agilemanifesto.org/'>Agile Manifesto</a>, and creates a concrete process through which we can live those statements.</p>
+
+		<p>Scrum relies on steady and frequent iteration, in the form of Sprints, to progressively add new features and fixes to a product. Sprints last between one and four weeks, and always end with a stable and releasable version of the product.</p>
+
+		<p>Scrum aims to be simple and easy to learn, while still providing the very basic elements required for it to be a process at all. This is in keeping with the Agile value of <q cite='http://agilemanifesto.org/'>Individuals and interactions over processes and tools.</q></p>
+
+		<p>Scrum has three roles and four meetings. Nothing else we do is considered Scrum if it is not those three roles and four meetings. Your title, your seniority in the company, your weekly meeting, your documents - these are not Scrum.</p>
+
+		<h2><a id='roles'></a>Roles</h2>
+
+		<h3><a id='development-team'></a>Development Team</h3>
+
+		<p><strong>The Development Team does the work.</strong> Anyone responsible for work during the Sprint is <em>Development Team</em>. That includes QA, coders, designers, database engineers, backend greasemonkies, hardware manufacturers, etc. If your work is required to complete the Sprint, you are Development Team.</p>
+
+		<p>The Development Team is self-organizing. This means that if you need someone or a specific set of skills, you are empowered to add that person or skillset to the team. It means that the Development Team makes its own sovoreign decisions for how to execute the work, and how that work is distributed across the team. The Scrum Guide says it best:</p>
+
+		<blockquote>
+			No one (not even the Scrum Master) tells the Development Team how to turn Product Backlog into Increments of potentially releasable functionality
+			<footer>
+				<cite>- <a href='https://www.scrum.org/resources/scrum-guide'>The Scrum Guide 2017</a>, <a href='https://scrum.org'>scrum.org</a></cite>
+			</footer>
+		</blockquote>
+
+		<p>Inside the Development Team, there are no officially recognized "leaders" or "seniors" or sub-teams. You are all one team. You are all leaders when your strength and skills puts you in front, and you are all responsible for the outcome of the Sprint.</p>
+
+		<h3><a id='product-owner'></a>Product Owner</h3>
+
+		<p><strong>The Product Owner knows everything about the product.</strong> They interpret the needs/demands/whining of the client and the boardmembers into Product Backlog items, which are user stories expressing those needs in explicit and efficient statements. They decide what goes into the product, when, and how important those features and fixes are.</p>
+
+		<p>A large part of the Product Owner role is maintaining the Product Backlog. Their ability and skill in this is an ever evolving capability that the Product Owner develops as they work with a Development Team:</p>
+		
+		<ul>
+			<li>Do I need to be more specific with my wording? </li>
+			<li>Does this team benefit from screenshots, or will a paragraph do?</li>
+			<li>How small do I need to break my user stories down for them to be actionable?</li>
+			<li>Is this client request <em>really</em> important or useful enough to go into this Sprint?</li>
+			<li>Will adding this feature increase the value of the product, or just satisfy some immediate kneejerk need?</li>
+			<li>Should I prioritize bug fixes or new features?</li>
+		</ul>
+		
+		<p>To do this, they rely on iteration and feedback from the team, as well as direct help from the Scrum Master and Development Team to refine their user stories. Refining the Product Backlog is a team effort, even if the Product Owner is ultimately the one responsible for its contents and ordering. The highest priority, most likely to be next implemented Product Backlog items should be refined first and to a greater degree, with less important and later scheduled items only refined as time permits.</p>
+
+		<blockquote>
+			For the Product Owner to succeed, the entire organization must respect his or her decisions. The Product Owner’s decisions are visible in the content and ordering of the Product Backlog. No one can force the Development Team to work from a different set of requirements.
+			<footer>
+				<cite>- <a href='https://www.scrum.org/resources/scrum-guide'>The Scrum Guide 2017</a>, <a href='https://scrum.org'>scrum.org</a></cite>
+			</footer>
+		</blockquote>
+		
+		<h3><a id='scrum-master'></a>Scrum Master</h3>
+
+		<p><strong>The Scrum Master knows everything about Scrum, and teaches/evangelizes Scrum to the team, the company, and even to the client if necessary.</strong> This is really only half of the job - the Scrum Master's primary function, in my estimation, is to remove roadblocks.</p>
+
+		<p>A Scrum Master operates by seeing the process, the people, and the product from above, and identifying things and interactions that are hindering progress and understanding; those things are then <em>remedied with immediate and extreme prejudice</em>. Right there, on the spot if possible. If someone doesn't understand literally anything, the Scrum Master helps them to understand, or points them to someone or some resource that will help. If a meeting is going too long, or is proving unhelpful, the Scrum Master swoops in and tells them to break it up or describes how to make the meeting useful. If some facet of Scrum is inefficient or not quite right, the Scrum Master changes it. Right then and there.</p>
+
+		<p>As a <em>servant leader</em>, the Scrum Master works at the beck and call of the Development Team and Product Owner, providing guidance, parental firmness, reassuring hugs, and a rock-solid, ever-present landmark of knowledge and wisdom.</p>
+
+		<p>I can't express the full scope of Scrum Master duties better than the Scrum Guide:</p>
+
+		<blockquote>
+			<h3>Scrum Master Service to the Product Owner</h3>
+			<p>The Scrum Master serves the Product Owner in several ways, including:</p>
+			<ul>
+				<li>Ensuring that goals, scope, and product domain are understood by everyone on the Scrum Team as well as possible;</li>
+				<li>Finding techniques for effective Product Backlog management;</li>
+				<li>Helping the Scrum Team understand the need for clear and concise Product Backlog items;</li>
+				<li>Understanding product planning in an empirical environment;</li>
+				<li>Ensuring the Product Owner knows how to arrange the Product Backlog to maximize value;</li>
+				<li>Understanding and practicing agility; and,</li>
+				<li>Facilitating Scrum events as requested or needed.</li>
+			</ul>
+			
+			<h3>Scrum Master Service to the Development Team</h3>
+			<p>The Scrum Master serves the Development Team in several ways, including:</p>
+			<ul>
+				<li>Coaching the Development Team in self-organization and cross-functionality;</li>
+				<li>Helping the Development Team to create high-value products;</li>
+				<li>Removing impediments to the Development Team’s progress;</li>
+				<li>Facilitating Scrum events as requested or needed; and,</li>
+				<li>Coaching the Development Team in organizational environments in which Scrum is not yet fully adopted and understood.</li>
+			</ul>
+			
+			<h3>Scrum Master Service to the Organization</h3>
+			<p>The Scrum Master serves the organization in several ways, including:</p>
+			<ul>
+				<li>Leading and coaching the organization in its Scrum adoption;</li>
+				<li>Planning Scrum implementations within the organization;</li>
+				<li>Helping employees and stakeholders understand and enact Scrum and empirical product development;</li>
+				<li>Causing change that increases the productivity of the Scrum Team; and,</li>
+				<li>Working with other Scrum Masters to increase the effectiveness of the application of Scrum in the organization.</li>
+			</ul>
+			<footer>
+				<cite>- <a href='https://www.scrum.org/resources/scrum-guide'>The Scrum Guide 2017</a>, <a href='https://scrum.org'>scrum.org</a></cite>
+			</footer>
+		</blockquote>
+		
+		<h2><a id='the-sprint'></a>The Sprint</h2>
+
+		<p>The Sprint is the beating heart of Scrum, and the container, as well as the enabler, for everything else we do.</p>
+
+		<p>The point of the Sprint is for the Development Team to deliver a "done" (more on that later) iteration of the product, implementing Product Backlog items that the Product Owner wants completed. After the Sprint, the Product Owner should be able to immediately, if they want, call all our clients and say we have a new version, new feature, etc, to install. During a Sprint, all work is toward a Sprint Goal, if one has been created, and that work encompasses everything that needs to be done; this includes testing!</p>
+
+		<p>Sprints are mini-projects no longer than one month long, based on a Sprint Backlog (a subset of the Product Backlog) that is created during the Sprint Planning meeting. <em>Generally</em>, a Sprint should represent a singular feature, suite of related features, or entire self-contained parts; this is not a hard-and-fast rule, however, as work is not often so easily boxed. While the Development Team is working, the Product Owner remains on-hand to clarify Product Backlog items, and to renegotiate the Sprint Backlog if the selected work proved to be too much or too little.</p>
+
+		<p>It's up to the Development Team to jam as much work as it thinks it can do in the Sprint timebox - over time, this understanding of how much work the team can accomplish will be better understood, so don't fret if Sprints sometimes feel overburdened or too light. That is a part of the process, especially for a new team.</p>
+
+		<h3><a id='definition-of-done'></a>Definition of "done"</h3>
+
+		<p>The Scrum Guide has a pretty big section dedicated to what <em>done</em> means. What could it possibly mean, for any given Scrum Team, to be "done" with a Sprint?</p>
+
+		<p>For us, I imagine our definition of "done" is as simple as saying `yes` to these three questions:</p>
+		<ul>
+			<li>Are all the Sprint Backlog items implemented?</li>
+			<li>Has everything been tested?</li>
+			<li>Is the Product Owner satisfied with the outcome?</li>
+		</ul>
+		
+		<p>For other organizations, however, that can get much fuzzier, much more involved. The thing to take away is that, while we can most likely just have a very simple, obvious definition of "done", we have the option to decide as a Scrum Team on a new definition. If "done" should include some form of external validation (security, HIPAA, etc), then we may need to consider that. If testing should no longer be a part of the Sprint, then our "done" needs to be reevaluated.</p>
+
+		<p>The important thing is that this definition of "done" is known to all, universally agreed upon, and is easy to determine a yes or a no at any point in time.</p>
+
+		<h2><a id='meetings'></a>Meetings</h2>
+
+		<img src='./meetings.jpg' title='Flowchart of Scrum Meetings inside a Sprint' alt='Flowchart of Scrum Meetings inside a Sprint' />
+
+		<p>Scrum meetings (also called "ceremonies" by corporate weirdos) are the glue that holds the Sprint(s) together. They are all "timeboxed", which means that they have a mandatory time limit for how long they can take, but no minimum amount of time. The Scrum Master will throw you out if you go too long!</p>
+
+		<p>The flow goes like this, in a never-ending circle until the Product Backlog is empty:</p>
+		<ol>
+			<li>The Scrum Team holds a <strong>Sprint Planning</strong> meeting</li>
+			<li>The Development Team holds <strong>Daily Scrum</strong> meetings while they do their work</li>
+			<li>Once the Sprint Backlog has been completed, the Scrum Team holds a <strong>Sprint Review</strong></li>
+			<li>Whether the Sprint was successful or not, the Scrum Team holds a <strong>Sprint Retrospective</strong> meeting</li>
+		</ol>
+		
+		<h3><a id='sprint-planning'></a>Sprint Planning</h3>
+
+		<ul>
+			<li><strong>When:</strong> At the beginning of a new Sprint</li>
+			<li><strong>How long:</strong> At most, two hours for every week that the Sprint is scheduled to run</li>
+			<li><strong>Who:</strong> The whole Scrum Team</li>
+		</ul>
+		
+		<blockquote>
+			The work to be performed in the Sprint is planned at the Sprint Planning. This plan is created by the collaborative work of the entire Scrum Team.
+			<footer>
+				<cite>- <a href='https://www.scrum.org/resources/scrum-guide'>The Scrum Guide 2017</a>, <a href='https://scrum.org'>scrum.org</a></cite>
+			</footer>
+		</blockquote>
+		
+		<p>I mean... you can't get any more explicit than that.  </p>
+
+		<p>During the Sprint Planning meeting, the Product Owner presents the features, fixes, and other Product Backlog items they would like to be included in the Sprint. The Development Team then forecasts how much of that it can accomplish in the upcoming Sprint, with an eye toward creating a releasable, useable, "done" iteration. This forecasting can be done in many ways, from assigning arbitrary "points" to each task representing relative difficulty, or playing <a href='https://en.wikipedia.org/wiki/Planning_poker'>Planning Poker</a>.</p>
+
+		<p>The tasks that the Development Team thinks it can complete are then compiled into a Sprint Backlog, which will be burned down as the Sprint progresses, and represents a contract, if you will, between the Product Owner and the Development Team.</p>
+
+		<p>If the purpose of the Sprint is a singular feature or application, a Sprint Goal should be created. This is an efficient, explicit statement of the purpose of the Sprint that can help guide the Development Team in their decisions. For example, a Sprint Goal might be:</p>
+		
+		<blockquote>
+			Implement user authentication such that any of our clients, regardless of their authentication method, can immediately benefit from added security
+		</blockquote>
+
+		<p>With the Sprint Backlog in hand, the Development Team then decides how the work will be accomplished. This involves asking questions like:</p>
+		<ul>
+			<li>Do we have the people/skills we need?</li>
+			<li>How long will each task take?</li>
+			<li>Is there anyone more suited to accomplish each task, and how much overlap is there?</li>
+			<li>How do we efficiently spread tasks amongst ourselves to ensure the Sprint Backlog items are all completed on time?
+				<ul>
+					<li>This isn't necessarily "who should get what task", but more like "you're better at this than I am, so you should be the one to handle these - Ah, you won't have time; that means I'll need to schedule some time with you to learn what you know", etc.</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h3><a id='daily-scrum'></a>Daily Scrum</h3>
+		
+		<ul>
+			<li><strong>When:</strong> Every day during the Sprint</li>
+			<li><strong>How long:</strong> At most, 15 minutes</li>
+			<li><strong>Who:</strong> The Development Team, optionally the Scrum Master, plus anyone that the Development Team wants to be there</li>
+		</ul>
+		
+		<p>The Daily Scrum is held by the Development Team, solely for the benefit of the Development Team. This meeting is optionally proctored by the Scrum Master if the Development Team isn't finding the meeting useful, is having too much conflict during the meeting, or is having trouble keeping it within the 15 minute timebox.</p>
+
+		<p>During the Daily Scrum, the Development Team reflects on what work has already been done, brings up good and bad things that need light, and plans what will happen for the next 24 hours. This is where you speak up if you need help, or if you noticed someone going above and beyond.</p>
+
+		<p>The Development Team can invite anyone else to the meeting if they feel it will be necessary - for example, they may want the Product Owner to sit in on a meeting to ask for clarification on some of the Sprint Backlog items, or to negotiate the Sprint Backlog if there is too much/too little work.</p>
+
+		<p>The Development Team can splinter off into its own meetings between members as it deems necessary if more needs to be talked about that won't fit inside the 15 minute timebox.</p>
+
+		<h3><a id='sprint-review'></a>Sprint Review</h3>
+
+		<ul>
+			<li><strong>When:</strong> At the end of the Sprint</li>
+			<li><strong>How long:</strong> At most, one hour for every week that the Sprint ran</li>
+			<li><strong>Who:</strong> The whole Scrum Team, plus anyone that the Product Owner wants to be there</li>
+		</ul>
+		
+		<p>During the Sprint Review, the Development Team demos their increment to the rest of the Scrum Team. The Product Owner and the Development Team then agree on what tasks are "done", and what Product Backlog items need to be forwarded to the next Sprint. Any Product Backlog items that are deemed "done" are removed from the Product Backlog, and the world feels a little bit lighter.</p>
+
+		<p>Based on this info, the Product Owner discusses the status of the Product Backlog, outlining any changes to it that have happened during the Sprint, as well as what they want to happen in future Sprints. This can include any new clients we signed, and what weird new things they might want, etc.</p>
+
+		<p>Overall, the point of the Sprint Review is to bring everyone back together at the end of the Sprint, acknowledge the work that was done, adjust the Product Backlog, and do some pre-planning for future Sprints. It can also serve as a demo to show off new functionality to boardmembers, clients, and other stakeholders.</p>
+
+		<p>Oh, and one more thing: <strong>the Sprint Review is an informal meeting!</strong> This isn't the Development Team standing in front of the principal's office door waiting to be judged - it's the entire team evaluating the current state of the product in light of the Sprint being done.</p>
+
+		<h3><a id='sprint-retrospective'></a>Sprint Retrospective</h3>
+
+		<ul>
+			<li><strong>When:</strong> Between Sprints</li>
+			<li><strong>How long:</strong> At most, one hour plus 30 minutes for every week that the Sprint ran</li>
+			<li><strong>Who:</strong> The whole Scrum Team</li>
+		</ul>
+		
+		<p>Arguably the most important meeting of them all (from an Agile perspective), the Sprint Retrospective is where the Scrum Team takes an honest, transparent, brave look at itself, how it works, and creates a plan for how to encourage the good things that happened, while also discouraging the bad things.</p>
+
+		<p>The important thing is that the Sprint Retrospective attendees are A) honest and thick-skinned, and B) positive and accepting. There is a tendency to become defensive, especially when something you did is brought up as needing improvement; but remember that this is all toward making a better product, and making everyone's job easier through iteration and constant feedback. Be brave. Be positive.</p>
+
+		<p>This is the meeting where if someone did something great, helped you out, or went above and beyond, you give them recognition. This is where you share tools and processes that worked for you so that others can benefit from them. This is where people link up to correct/mitigate their deficiencies, whatever they may be. After each successful Sprint Retrospective, we all have the opportunity to come away better.</p>
+
+		<p>Common things that can come up in a Sprint Retrospective:</p>
+		<ul>
+			<li>Discussing ways for the Product Owner to be better at writing actionable Product Backlog items.</li>
+			<li>Highlighting exemplary work, or good performers in general, and discussing *why* it was so good so that others can follow the example</li>
+			<li>Requesting more support from the Scrum Master if parts of the Scrum process are still confusing, or if meetings aren't being executed well, or if parts of the Scrum process seem inefficient.</li>
+			<li>Reviewing how much work the Development Team said it could do in the Sprint versus how much it could actually do. Is there a trend? Do we always overestimate? By how much?</li>
+			<li>Introducing new tools and processes that have proven to be helpful.</li>
+		</ul>
+		
+		<h2><a id='reflections-from-your-warmaster-scrum-master'></a>Reflections From Your <del>Warmaster</del> <ins>Scrum Master</ins></h2>
+
+		<p>There are two primary reasons why I like Scrum over other processes I've been a part of or researched. Firstly, as a developer by trade, I appreciate that one of the core tenets of Scrum is that the Development Team is <em>self-organizing</em>. In non-Scrum terms, that means you have to leave the devs alone and let them make their own decisions. <em>Leave the devs alone!</em> Wow. No other process has that, and I deeply appreciate that this is a thing we can have after so many decades of being leashed to some pointy-haired-boss or another that couldn't possibly understand the complexity and demands of the work.</p>
+
+		<p>The second reason I like it is more practical, and it's this: Scrum is simple. It's dead simple. You only need to know a handful of things, and that makes it easy to teach and easy to accept into your life. There's only a handful of meetings, and they are all distinct and necessary. You can only have one of three roles. There isn't a meeting before the meeting, or a meeting to review changes to the documents used by other meetings. There aren't document outcomes from every meeting that need to be created, drafted, reviewed, validated, signed, printed out, stored, distributed, cooked, eaten. Just people, requirements, the Sprint, and the few barebones meetings that join them all together.</p>
+
+		<p>Three roles. Four meetings. One person owns and understands all the requirements. One person owns and understands all the meetings and the Scrum process itself. The Dev Team decides how much work it can/should do, how long it will take, and how those tasks are executed. That's it - and that's why I like Scrum.</p>
+		
+		<blockquote>
+			<p>Build projects around motivated individuals.</p>
+			<p>Give them the environment and support they need,</p>
+			<p>and trust them to get the job done.</p>
+			<footer>
+				<cite> - One of the <a href='http://agilemanifesto.org/principles.html'>Twelve Principles of Agile Development</a></cite>
+			</footer>
+		</blockquote>
+
+		<h2><a id='resources'>Resources</h2>
+
+		<ul>
+			<li><a href='https://www.scrumguides.org/scrum-guide.html'>Official Scrum Guide 2017</a></li>
+			<li><a href='https://www.scrum.org/professional-scrum-certifications'>Scrum.org Scrum Certifications</a></li>
+			<li><a href='http://agilemanifesto.org/'>Agile Manifesto</a></li>
+			<li><a href='http://agilemanifesto.org/principles.html'>Twelve Principles of Agile Development</a></li>
+			<li><a href='https://www.agile42.com/en/agile-info-center/scrum/scrum-cheat-sheet/'>Scrum Cheat Sheet</a> by agile42.com</li>
+			<li><a href='https://en.wikipedia.org/wiki/Planning_poker'>Planning Poker (Wikipedia)</a></li>
+			<li><a href='https://en.wikipedia.org/wiki/User_story'>User Story (Wikipedia)</a></li>
+		</ul>
+		</div>
+	</body>
+</html>

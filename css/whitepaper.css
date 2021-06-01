@@ -72,3 +72,20 @@ h1 {
 h2 {
 	margin-top: 1em;
 }
+
+.banner, blockquote {
+	padding: 1em;
+	font-size: smaller;
+	font-style: italic;
+	color: #666;
+	border-left: 5px solid rgba(250,0,0,0.75);
+}
+
+blockquote footer {
+	width: 100%;
+	text-align: right;
+}
+
+img {
+	width: 100%;
+}
