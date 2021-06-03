@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Open+Sans&family=Rubik&family=Staatliches&display=swap');
 
 :root {
 	--purple: rgba(102,51,102, 0.75);
@@ -10,6 +10,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background: #fff;
+	font-family: 'Open Sans', sans-serif;
 }
 
 header {
@@ -20,8 +21,8 @@ header {
 	padding: 5px 1em;
 	background-color: var(--primary);
 	border-bottom-left-radius: 1em;
-	font-family: 'Bebas Neue', Impact, sans-serif;
-	font-size: 125%;
+	font-family: 'Staatliches', cursive;
+	font-size: 150%;
 }
 
 header a {
@@ -75,6 +76,9 @@ header a {
 
 h1, h2, h3 {
 	margin-bottom: 0.5em;
+	/* font-family: 'Rubik', sans-serif; */
+	font-family: 'Rubik', sans-serif;
+	font-weight: bold;
 }
 
 h1 {
@@ -105,11 +109,18 @@ blockquote {
 	margin-bottom: 2em;
 	margin-right: 0;
 	border-color: var(--secondary);
+	font-family: 'Rubik', sans-serif;
 }
 
 blockquote footer {
 	width: 100%;
 	text-align: right;
+	font-size: smaller;
+}
+
+blockquote.fancy {
+	font-size: larger;
+	border-left: none;
 }
 
 img {
@@ -119,10 +130,15 @@ img {
 
 code, pre {
 	background-color: #eee;
-	padding: 0 0.5em;
+	padding: 0.25em;
 	border-radius: 3px;
 	color: #666;
 	font-size: smaller;
+	font-family: 'Courier Prime', monospace;
+}
+
+code {
+	margin-top: -0.25em;
 }
 
 pre {
