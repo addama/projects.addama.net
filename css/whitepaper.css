@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+:root {
+	--purple: rgba(102,51,102, 0.75);
+	--primary: rgba(0,0,0,0.75);
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -12,7 +17,7 @@ header {
 	right: 0;
 	text-align: right;
 	padding: 5px 1em;
-	background-color: rgba(250,0,0,0.75);
+	background-color: var(--primary);
 	border-bottom-left-radius: 1em;
 	font-family: 'Bebas Neue', Impact, sans-serif;
 	font-size: 125%;
@@ -20,7 +25,7 @@ header {
 
 header a {
 	text-decoration: none;
-	color: #222;
+	color: #fff;
 }
 
 #main, main {
@@ -77,12 +82,11 @@ h2 {
 	padding: 1em;
 	font-size: smaller;
 	color: #666;
-	border-left: 5px solid rgba(250,0,0,0.75);
+	border-left: 5px solid var(--primary);
 }
 
 .banner, blockquote {
 	font-style: italic;
-	
 }
 
 blockquote footer {
@@ -115,4 +119,18 @@ kbd {
 	color: rgba(250,0,0,0.75);
 	font-size: smaller;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.flex section {
+	width: 40%;
+}
+
+figcaption {
+	font-size: smaller;
 }
