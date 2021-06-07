@@ -76,7 +76,6 @@ header a {
 
 h1, h2, h3 {
 	margin-bottom: 0.5em;
-	/* font-family: 'Rubik', sans-serif; */
 	font-family: 'Rubik', sans-serif;
 	font-weight: bold;
 }
@@ -126,7 +125,6 @@ blockquote.fancy {
 img {
 	width: 100%;
 }
-
 
 code, pre {
 	background-color: #eee;
