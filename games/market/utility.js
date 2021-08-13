@@ -61,6 +61,10 @@ function stylePercentChange(lc) {
 	return ''
 }
 
+function findGreatest(list) {
+	
+}
+
 function _debugReport() {
 	// Report the current state of the market to the console for debugging
 	console.warn('OVERVIEW')

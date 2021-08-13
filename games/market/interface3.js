@@ -10,7 +10,8 @@ class App extends React.Component {
 			state: this.props.state,
 			page: 'loading',
 			startup: true,
-			highlighted: false
+			highlighted: false,
+			points: []
 		}
 		start(this)
 	}
@@ -64,28 +65,13 @@ class LimitMeter extends React.Component {
 		cls += ' portfolioTable_Value_LastChange text_right'
 		return <span className={cls}>{toMoney(lc, true)}</span>
 	}
-	
-	render2() {
-		let value_percent = this.getPercent(this.props.min, this.props.max, this.props.value)
-		let ema_percent = this.getPercent(this.props.min, this.props.max, this.props.ema10)
-		return (
-			<div className='meter' title={`Value: ${toMoney(this.props.value)};\nMin: ${toMoney(this.props.min)};\nMax: ${toMoney(this.props.max)};\nEMA10: ${toMoney(this.props.ema10)}`}>
-				<div className='bar' style={{width: `${value_percent}%`}}></div>
-				<div className={'line ' + ((value_percent >= ema_percent)?'better':'')} style={{left: `${ema_percent}%`}}></div>
-				<div className='meter_text'>
-					<span className='meter_lastChange'>{this.renderLastChange(this.props.lc)}</span>
-					<br />
-					<span className='meter_value'>{toMoney(this.props.value)}</span>
-				</div>
-			</div>
-		)
-	}	
-	
+
 	render() {
 		let value_percent = this.getPercent(this.props.min, this.props.max, this.props.value)
-		let ema_percent = this.getPercent(this.props.min, this.props.max, this.props.ema10)
+		let ema_percent = this.getPercent(this.props.min, this.props.max, this.props.ema)
 		return (
-			<div className='meter' title={`Value: ${toMoney(this.props.value)} \nMin: ${toMoney(this.props.min)} \nMax: ${toMoney(this.props.max)} \nEMA30: ${toMoney(this.props.ema10)}`}>
+			<div className='meter' title={`Value: ${toMoney(this.props.value)} \nMin: ${toMoney(this.props.min)} \nMax: ${toMoney(this.props.max)} \nEMA${EMA_WINDOW}: ${toMoney(this.props.ema)}`}>
+				<Sparkline points={this.props.points} />
 				<div className='bar' style={{width: `${value_percent}%`}}></div>
 				<div className={'line ' + ((value_percent >= ema_percent)?'better':'')} style={{left: `${ema_percent}%`}}></div>
 			</div>
@@ -166,6 +152,42 @@ class BuyButton extends React.Component {
 	}
 }
 
+class Sparkline extends React.Component {
+	findLargestX = () => {
+		return Math.max(...this.props.points.map((p) => p.tick))
+	}
+	
+	findLargestY = () => {
+		return Math.max(...this.props.points.map((p) => p.value))
+	}
+
+	plotPoints = (w, h, increment) => {
+		//let largestX = this.findLargestX()
+		let largestY = this.findLargestY()
+		let points = []
+		for (let i = 0; i < this.props.points.length; i++) {
+			let p = this.props.points[i]
+			let x = 5+i * increment
+			let y = (getPercentChange(p.value, largestY)) * h/25 + 10
+			points.push(`${x},${y}`)
+		}
+		return points.join(' ')
+	}
+	
+	render() {
+		let width = 300
+		let height = 50
+		let padding = 5
+		let stepIncrement = 10
+		let points = this.plotPoints(width - padding, height - padding, width / EMA_WINDOW)
+		return (
+			<svg className='sparkline' viewBox={`0 0 ${width} ${height}`}>
+				<polyline stroke='#000' fill='none' strokeWidth='1' points={points} />
+			</svg>
+		)
+	}
+}
+
 /********************************************************
 *	PORTFOLIO
 ********************************************************/
@@ -240,6 +262,7 @@ class PortfolioTable extends React.Component {
 	}
 	
 	makeRows() {
+		// <LimitMeter min={p.limit_min} max={p.limit_max} value={p.cost} ema={p.ema} lc={p.last_change} />
 		let rows = []
 		this.props.stocks.map(p => {
 			let subRows = false
@@ -275,10 +298,10 @@ class PortfolioTable extends React.Component {
 						{this.renderLastChange(p.last_change)}
 					</td>
 					<td className='text_right'>
-						{toMoney(p.ema10)}
+						{toMoney(p.ema)}
 					</td>
 					<td className='portfolioTable_Value'>
-						<LimitMeter min={p.limit_min} max={p.limit_max} value={p.cost} ema10={p.ema10} lc={p.last_change} />
+						<LimitMeter min={p.limit_min} max={p.limit_max} value={p.cost} ema={p.ema} lc={p.last_change} points={p.history} />
 					</td>
 					<td className='text_center'>
 						<BuyButton count='1' stockIndex={p.stockIndex} />

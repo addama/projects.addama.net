@@ -21,7 +21,7 @@ const VALUE_UNIT_MIN = 0.01
 const PERCENT_CHANGE_MIN = -25
 const PERCENT_CHANGE_MAX = 500
 const SPLIT_LIMIT = 1000
-const EMA_WINDOW = 30
+const EMA_WINDOW = 100
 // const SELL_FEE = 0.01
 const DIVIDEND_INCREMENT = 15
 const TRADE_INTEREST_PERCENT = 0.001
@@ -80,11 +80,7 @@ function addEvent(message, target='-', type='news') {
 function getRating(s) {
 	// Returns a string representing positive or negative rating, representing the reaction
 	// of a stock
-
 	let rating = state.trends.world.weight + state.trends[s.region].weight + state.trends[s.sector].weight + s.trend.weight
-	// if (rating < 0) return '↓'.repeat(Math.abs(rating))
-	// if (rating > 0) return '↑'.repeat(rating)
-	// return '↔'
 	return rating
 	
 }
@@ -101,7 +97,7 @@ function setGlobalTrends() {
 		
 		// Set to a default if this is a new game
 		if (!state.trends[t]) {
-			state.trends[t] = { time: 10, weight: (t === 'world') ? 1 : 0 }
+			state.trends[t] = { time: 10, weight: 0 }
 			return true
 		}
 		
@@ -112,19 +108,6 @@ function setGlobalTrends() {
 				(isWorld) ? WORLD_TREND_MAX : (isRegion) ? REGION_TREND_MAX : CATEGORY_TREND_MAX
 			)
 			state.trends[t].weight = dF()
-			/*
-			if (state.trends[t].weight === 2) {
-				// High trend for a certain area, so we'll report it
-				let string = (isWorld) ? 'The world market' : (isRegion) ? `The ${t.toUpperCase()} region` : `The ${properCase(t)} sector`
-				addEvent(`${string} is experiencing a particularly high swing!`)
-			}
-			
-			if (state.trends[t].weight === -2) {
-				// Low trend for a certain area, so we'll report it
-				let string = (isWorld) ? 'The world market' : (isRegion) ? `The ${t.toUpperCase()} region` : `The ${properCase(t)} sector`
-				addEvent(`${string} is experiencing a particularly low swing!`)
-			}
-			*/
 		} else {
 			state.trends[t].time--
 		}
@@ -194,6 +177,13 @@ function setStockReactions(s) {
 	if (s.cost > s.limit_max) s.limit_max = s.cost
 	s.last_change = change
 	s.base_percent_change = money(getPercentChange(s.base_cost, s.cost))
+	
+	// Update the cost history
+	s.history.push({
+		tick: state.tick,
+		value: s.cost
+	})
+	if (s.history.length > EMA_WINDOW) s.history.shift() 
 }
 
 function applyDividend(s) {
@@ -231,9 +221,9 @@ function applyInterest() {
 	if (bank_interest > 0) addEvent(`You earned ${money(bank_interest)} in interest from your bank account balance!`)
 }
 
-function calcEMA(s, w=EMA_WINDOW) {
-	// Keeps track of the worth value for the last 10 ticks, then calculates
-	// the Exponential Moving Average across those 10 values, which is stored
+function calcEMA_old(s, w=EMA_WINDOW) {
+	// Keeps track of the worth value for the last EMA_WINDOW ticks, then calculates
+	// the Exponential Moving Average across those EMA_WINDOW values, which is stored
 	// in ema10
 	s.last10.push(s.cost)
 	if (s.last10.length > EMA_WINDOW) s.last10.shift()
@@ -245,6 +235,19 @@ function calcEMA(s, w=EMA_WINDOW) {
 	}
 	s.ema10 = money(result[result.length - 1])
 	return s.ema10
+}
+
+function calcEMA(s, w=EMA_WINDOW) {
+	// Keeps track of the worth value for the last EMA_WINDOW ticks, then calculates
+	// the Exponential Moving Average across those EMA_WINDOW values, which is stored
+	// in ema
+	let k = 2/(w + 1)
+	result = [s.history[0].value]
+	for (let i = 1; i < s.history.length; i++) {
+		result.push(s.history[i].value * k + result[i - 1] * (1 - k))
+	}
+	s.ema = money(result[result.length - 1])
+	return s.ema
 }
 
 function calcHoldings(p) {
@@ -332,10 +335,13 @@ function start(app) {
 		s.base_cost = s.cost 
 		s.limit_min = s.base_cost
 		s.limit_max = s.base_cost
-		s.ema10 = s.base_cost
+		s.ema = s.base_cost
 		s.last10 = []
 		//s.rating = getRating(s)
 		s.stockIndex = i
+		s.history = [
+			{ tick: state.tick, value: s.base_cost }
+		]
 		return s
 	}
 	
