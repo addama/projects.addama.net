@@ -1,5 +1,7 @@
 const DEBUG = false
-const TICK_LENGTH = 3000
+const DEFAULT_TICK_LENGTH = 3000
+const TICK_LENGTHS = [ 1000,3000,5000,10000 ]
+var TICK_LENGTH = 1
 const STARTING_TRADE_MONEY = 100
 const STARTING_BANK_MONEY = 0
 const RANDOM_SIZE_MIN = 50
@@ -51,6 +53,7 @@ const RATINGS = [
 
 var TIMER = false
 var isRunning = false
+var appTarget = false
 
 /********************************************************
 *	DATA
@@ -319,7 +322,7 @@ function applyBondCoupons() {
 	}
 }
 
-function start(app) {
+function start(app, noReload=false) {
 	// Initialize stock values
 	function prepass(s, i) {
 		// Do standard data massaging to fill in gaps
@@ -345,20 +348,23 @@ function start(app) {
 		return s
 	}
 	
-	let local = loadGame()
-	state = (local) ? local : state
-	
-	if (!local) {
-		Object.assign(state, state, database)
-		for (let i = 0; i < state.stocks.length; i++) {
-			state.stocks[i] = prepass(state.stocks[i], i)
+	if (!noReload) {
+		appTarget = app
+		let local = loadGame()
+		state = (local) ? local : state
+		
+		if (!local) {
+			Object.assign(state, state, database)
+			for (let i = 0; i < state.stocks.length; i++) {
+				state.stocks[i] = prepass(state.stocks[i], i)
+			}
+			setGlobalTrends()
 		}
-		setGlobalTrends()
 	}
 	console.log('start',state)
 	// Start the timer
 	tick(app)
-	TIMER = setInterval(() => tick(app), TICK_LENGTH)
+	TIMER = setInterval(() => tick(app), TICK_LENGTHS[TICK_LENGTH])
 	isRunning = true
 }
 
@@ -397,13 +403,27 @@ function tick(app) {
 	if (DEBUG === true) _debugReport()
 		
 	app.tick(state)
-	let t1 = performance.now()
 	if (DEBUG) console.timeEnd('tick')
 }
 
 function stop() { 
 	clearInterval(TIMER) 
 	isRunning = false
+	console.info('stop')
+}
+
+function setTickSpeed(tick) {
+	if (tick === '-1') {
+		if (isRunning) stop()
+		return true
+	}
+	
+	if (!TICK_LENGTHS[tick] || !appTarget) return false
+	TICK_LENGTH = tick
+	if (isRunning) stop()
+	start(appTarget, true)
+	console.info('Tick length changed to',TICK_LENGTHS[tick])
+	return true
 }
 
 /********************************************************
@@ -664,4 +684,10 @@ Charity
 	Tax deductions
 Trophies
 	Purchased with money
+	
+Speed setting
+Separate out the portfolio again, but find a way to have them all on the screen
+Sortable tables
+Minimum amount of taxable before taxes are actually charged 
+	(I think that's how it works in real life?)
 */

@@ -61,8 +61,22 @@ function stylePercentChange(lc) {
 	return ''
 }
 
-function findGreatest(list) {
-	
+function alphaSort(sortable, key, isAsc=true) {
+	sortable.sort((a,b) => {
+		if (!a[key] || !b[key]) return 0
+		if (isAsc) return (a[key] > b[key]) ? 1 : -1
+		return (a[key] < b[key]) ? 1 : -1
+	})
+	return sortable
+}
+
+function numSort(sortable, key, isAsc=true) {
+	sortable.sort((a,b) => {
+		if (!a[key] || !b[key]) return 0
+		if (isAsc) return a[key] - b[key]
+		return b[key] - a[key]
+	})
+	return sortable
 }
 
 function _debugReport() {
